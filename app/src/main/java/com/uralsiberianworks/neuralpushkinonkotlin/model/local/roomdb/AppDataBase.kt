@@ -22,23 +22,4 @@ abstract class AppDataBase : RoomDatabase() {
     abstract fun getContactDao(): ContactDao
     abstract fun getMessageDao(): MessageDao
 
-    companion object {
-        var INSTANCE: AppDataBase? = null
-
-        @Synchronized
-        fun getAppDataBase(context: Context): AppDataBase? {
-            if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(
-                        context.applicationContext,
-                        AppDataBase::class.java,
-                        "myDB"
-                    ).build()
-            }
-            return INSTANCE
-        }
-
-        fun destroyDataBase() {
-            INSTANCE = null
-        }
-    }
 }
